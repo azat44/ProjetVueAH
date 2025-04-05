@@ -1,21 +1,39 @@
-  import { createRouter, createWebHistory } from 'vue-router'
-  import HomeView from '@/views/HomeView.vue'
-  import CounterView from '@/views/CounterView.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 
-  const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
-    routes: [
-      {
-        path: '/',
-        name: 'home',
-        component: HomeView,
-      },
-      {
-        path: '/counter',
-        name: 'counter',
-        component: CounterView,
-      }
-    ],
-  })
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: () => import('@/views/HomeView.vue'),
+    },
+    {
+      path: '/counter',
+      name: 'counter',
+      component: () => import('@/views/CounterView.vue'),
+    },
+    {
+      path: '/category/:id/list',
+      name: 'category_list',
+      component: () => import('@/views/CategoryListView.vue'),
+    },
+    {
+      path: '/category/:id',
+      name: 'category',
+      component: () => import('@/views/CategoryView.vue'),
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: () => import('@/views/CheckoutView.vue'),
+    },
+    {
+      path: '/product/:id',
+      name: 'product',
+      component: () => import('@/views/ProductView.vue'),
+    }
+  ],
+})
 
-  export default router
+export default router
